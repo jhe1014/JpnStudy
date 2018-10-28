@@ -6,4 +6,5 @@
     <dimen name="today_word_size">30dp</dimen>
     <dimen name="meaning_size">17dp</dimen>
     <dimen name="today_sentence_size">22dp</dimen>
+    <dimen name="word_test">40dp</dimen>
 </resources>
