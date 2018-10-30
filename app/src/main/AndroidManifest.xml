@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WordTestActivity"></activity>
+        <activity android:name=".WordTestActivity" />
+        <activity android:name=".WordListActivity"></activity>
     </application>
 
 </manifest>

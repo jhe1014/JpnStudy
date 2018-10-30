@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+
+    <ListView
+        android:id="@+id/word_lIst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+
+        <TextView
+        android:id="@+id/word"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center" />
+
+        <ImageButton
+        android:id="@+id/Image_headset"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+        <ImageButton
+        android:id="@+id/Image_star"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+    </ListView>
+
+</LinearLayout>
