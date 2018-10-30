@@ -12,8 +12,4 @@ public class WordListActivity extends AppCompatActivity {
 
     }
 
-    public class Listview {
-
-         }
-
 }
