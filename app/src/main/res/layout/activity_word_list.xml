@@ -27,14 +27,16 @@
         android:gravity="center" />
 
         <ImageButton
-        android:id="@+id/Image_headset"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+            android:id="@+id/Image_headset"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/outline_volume_mute_white_18dp" />
 
         <ImageButton
-        android:id="@+id/Image_star"
-        android:layout_width="60dp"
-        android:layout_height="60dp" />
+            android:id="@+id/Image_star"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/outline_star_border_white_18dp" />
     </ListView>
 
 </LinearLayout>
