@@ -34,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="JLPT N2"
-            android:textSize="@dimen/test_select_button"/>
+            android:textSize="@dimen/test_select_button"
+            android:background = "#9be460"/>
 
         <Button
             android:id="@+id/jlpt_n3"
