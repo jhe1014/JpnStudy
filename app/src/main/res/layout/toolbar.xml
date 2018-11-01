@@ -8,3 +8,4 @@
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 </android.support.v7.widget.Toolbar>
+/* 버튼 들어있는 메뉴바 https://github.com/Devlight/NavigationTabBar */
