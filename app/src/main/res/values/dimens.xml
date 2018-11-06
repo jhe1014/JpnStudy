@@ -8,4 +8,5 @@
     <dimen name="today_sentence_size">22dp</dimen>
     <dimen name="word_test">40dp</dimen>
     <dimen name="test_select_button">35dp</dimen>
+    <dimen name="test">13dp</dimen>
 </resources>

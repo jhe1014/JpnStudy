@@ -18,8 +18,10 @@
         </activity>
         <activity android:name=".WordTestActivity" />
         <activity android:name=".WordListActivity" />
-        <activity android:name=".TestLevelSelect"/>
-        <activity android:name=".YoutubeActivity"/>
+        <activity android:name=".TestLevelSelect" />
+        <activity android:name=".YoutubeActivity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".GraphActivity"></activity>
     </application>
 
 </manifest>

@@ -8,9 +8,9 @@ public class TestLevelSelect extends AppCompatActivity { // 문제은행 선택 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //나한테 왜그래....
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_level_select);
+        setTitle("문제은행");
 
         Button btn1 = (Button)findViewById(R.id.jlpt_n1);
         Button btn2 = (Button)findViewById(R.id.jlpt_n2);
