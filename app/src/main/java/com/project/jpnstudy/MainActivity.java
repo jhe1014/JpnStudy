@@ -2,7 +2,11 @@ package com.project.jpnstudy;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,30 +17,72 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
-
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Drawer drawer = new DrawerBuilder().withActivity(this).build();
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setTitle("");
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.home_navigation_view);
 
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_dehaze_black_24);
+        setTitle("");
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setCheckable(true);
+                drawerLayout.closeDrawers();
 
+                int id = menuItem.getItemId();
+                Intent intent;
+                switch (id) {
+                    case R.id.menu01 : // 단어목록
+                        intent = new Intent(getApplicationContext(), WordListActivity.class);
+                        startActivity(intent);
+                        break;
 
+                    case R.id.menu02 : // 문제은행
+                        intent = new Intent(getApplicationContext(), TestLevelSelect.class);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.menu03 : // 단어퀴즈
+                        intent = new Intent(getApplicationContext(), WordTestActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.menu04 : // 즐겨찾기
+                        intent = new Intent(getApplicationContext(), WordListActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
+    @Override
+    public  boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
+        switch (id) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     }
 
