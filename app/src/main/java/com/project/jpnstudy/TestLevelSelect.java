@@ -1,12 +1,14 @@
 package com.project.jpnstudy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
-public class TestLevelSelect extends AppCompatActivity { // 문제은행 선택 메뉴
+public class TestLevelSelect extends AppCompatActivity implements View.OnClickListener { // 문제은행 선택 메뉴
     Toolbar toolbar;
 
     @Override
@@ -23,6 +25,18 @@ public class TestLevelSelect extends AppCompatActivity { // 문제은행 선택 
         Button btn2 = (Button) findViewById(R.id.jlpt_n2);
         Button btn3 = (Button) findViewById(R.id.jlpt_n3);
         Button btn4 = (Button) findViewById(R.id.jlpt_n4);
+
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+        startActivity(intent);
     }
 
     @Override
