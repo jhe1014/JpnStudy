@@ -12,4 +12,5 @@
     <dimen name="test">13dp</dimen>
     <dimen name="table_margin">1dp</dimen>
     <dimen name="table_padding">3dp</dimen>
+    <dimen name="list_button">40dp</dimen>
 </resources>

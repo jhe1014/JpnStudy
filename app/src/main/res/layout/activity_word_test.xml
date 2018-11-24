@@ -25,7 +25,7 @@
             android:id="@+id/word_test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="단어"
+            android:text="@string/word"
             android:gravity="center"
             android:textSize="@dimen/word_test"
             android:textStyle="bold"
