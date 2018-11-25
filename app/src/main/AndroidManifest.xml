@@ -21,7 +21,7 @@
         <activity android:name=".TestLevelSelect" />
         <activity android:name=".YoutubeActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".GraphActivity"></activity>
+        <activity android:name=".GraphActivity" />
     </application>
 
 </manifest>

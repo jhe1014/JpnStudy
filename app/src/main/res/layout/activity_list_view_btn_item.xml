@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+
+
+
+    <TextView
+        android:id="@+id/word_jpn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="test"
+        android:layout_weight="2"
+        />
+
+
+    <TextView
+        android:id="@+id/word_kr"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="test"
+        android:layout_weight="2" />
+
+    <ImageButton
+        android:id="@+id/Image_headset"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/outline_volume_mute_white_18dp"
+        android:layout_weight="1" />
+
+    <ImageButton
+        android:id="@+id/Image_star"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/outline_star_border_white_18dp"
+        android:layout_weight="1"  />
+
+
+</android.support.constraint.ConstraintLayout>
