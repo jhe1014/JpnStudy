@@ -1,30 +1,38 @@
 package com.project.jpnstudy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 public class YoutubeActivity extends AppCompatActivity {
 
+    public void goToURL(View v) {
+        int id = v.getId();
+        LinearLayout layout = (LinearLayout)findViewById(id);
+        String tag = (String)layout.getTag();
+
+        Intent it = new Intent(this, WebPage);
+        it.putExtra("it_tag", tag);
+        startActivity(it);
+    }
+
+    public void goToabout(View v) {
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_youtube);
+        setContentView(android.R.layout.
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("youtube 주소 목록");
-        WebView webView = (WebView)findViewById(R.id.y_link);
-        webView.setWebViewClient(new WebViewClient());
-        WebSettings set = webView.getSettings();
+        setTitle("youtube");
         set.setJavaScriptEnabled(true);
         set.setBuiltInZoomControls(true);
 
-        webView.loadUrl("https://www.youtube.com/watch?v=BEfUuDt17wc");
 
 
     }
