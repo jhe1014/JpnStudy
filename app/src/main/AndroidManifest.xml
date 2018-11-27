@@ -22,7 +22,8 @@
         <activity android:name=".YoutubeActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".GraphActivity" />
-        <activity android:name=".WebPage"></activity>
+        <activity android:name=".WebPage" />
+        <activity android:name=".Favorites"></activity>
     </application>
 
 </manifest>

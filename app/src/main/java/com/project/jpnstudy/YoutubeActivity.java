@@ -14,7 +14,7 @@ public class YoutubeActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout)findViewById(id);
         String tag = (String)layout.getTag();
 
-        Intent it = new Intent(this, WebPage);
+        Intent it = new Intent(this, WebPage.class);
         it.putExtra("it_tag", tag);
         startActivity(it);
     }
@@ -25,14 +25,27 @@ public class YoutubeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(android.R.layout.
+        setContentView(R.layout.activity_webpage);
 
+        Intent it = getIntent();
+        String tag = it.getStringExtra("it_tag");
+        WebPage webviwe = (WebPage)findViewById(R.id.y_url);
+        webviwe.
+        set.setJavaScriptEnabled(true);//javascript를 사용할 수 있도록 설정
+        set.setBuiltInZoomControls(true);//안드로이드에서 제공하는 줌 아이콘을 사용할 수 있도록 설정
+
+
+
+
+
+
+/*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("youtube");
         set.setJavaScriptEnabled(true);
         set.setBuiltInZoomControls(true);
-
+*/
 
 
     }
