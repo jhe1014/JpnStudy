@@ -89,4 +89,12 @@
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer">
     </android.support.design.widget.NavigationView>
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="@+id/home_navigation_view_right"
+        android:layoutwidth="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_right"></android.support.v4.widget.DrawerLayout>
 </android.support.v4.widget.DrawerLayout>
