@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu04 : // 즐겨찾기
-                        intent = new Intent(getApplicationContext(), WordListActivity.class);
+                        intent = new Intent(getApplicationContext(), Favorites.class);
                         startActivity(intent);
                         break;
                 }

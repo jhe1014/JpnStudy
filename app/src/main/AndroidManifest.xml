@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.jpnstudy">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +25,8 @@
         <activity android:name=".TestActivity" />
         <activity android:name=".GraphActivity" />
         <activity android:name=".WebPage" />
-        <activity android:name=".Favorites"></activity>
+        <activity android:name=".Favorites" />
+        <activity android:name=".Word"></activity>
     </application>
 
 </manifest>
