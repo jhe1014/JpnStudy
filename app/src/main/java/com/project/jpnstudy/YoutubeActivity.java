@@ -26,7 +26,7 @@ public class YoutubeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(android.R.layout.);
+        setContentView(R.layout.webpage);
     }
 
 
