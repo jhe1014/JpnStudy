@@ -2,6 +2,9 @@ package com.project.jpnstudy;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,7 +25,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
-    NavigationView navigationView;
+    NavigationView navigationView_left;
+    NavigationView navigationView_right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.home_navigation_view);
+        navigationView_left = (NavigationView) findViewById(R.id.home_navigation_view);
+        navigationView_right = (NavigationView) findViewById(R.id.home_navigation_view_right);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_dehaze_black_24);
         setTitle("");
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView_left.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 menuItem.setCheckable(true);
@@ -64,6 +69,32 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.menu04 : // 즐겨찾기
                         intent = new Intent(getApplicationContext(), WordListActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
+
+        navigationView_right.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setCheckable(true);
+                drawerLayout.closeDrawers();
+
+                int id = menuItem.getItemId();
+                Intent intent;
+                switch (id) {
+                    case R.id.menu04 : // 통계
+                        intent = new Intent(getApplicationContext(), GraphActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.menu05 : // 설정
+                        break;
+
+                    case R.id.menu06 : // 유튜브
+                        intent = new Intent(getApplicationContext(), YoutubeActivity.class);
                         startActivity(intent);
                         break;
                 }
