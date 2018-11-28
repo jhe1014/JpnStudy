@@ -10,6 +10,15 @@ import android.widget.LinearLayout;
 
 public class YoutubeActivity extends AppCompatActivity {
     Toolbar toolbar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.webpage);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+
     public void goToURL(View v) {
         int id = v.getId();
         LinearLayout layout = (LinearLayout)findViewById(id);
@@ -23,14 +32,6 @@ public class YoutubeActivity extends AppCompatActivity {
     public void goToabout(View v) {
 
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.webpage);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-    }
-
-
 
 /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
