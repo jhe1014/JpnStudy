@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 public class WebPage extends AppCompatActivity {
 
 
-    @Override
+   /*  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webpage);
@@ -30,5 +30,5 @@ public class WebPage extends AppCompatActivity {
         WebView webview = (WebView)findViewById(R.id.y_url);
         webview.setWebViewClient(new WebViewClient());
         WebSettings set = webview.getSettings();
-    }
+    }*/
 }

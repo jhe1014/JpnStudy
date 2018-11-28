@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 public class YoutubeActivity extends AppCompatActivity {
 
-    public void goToURL(View v) {
+   /* public void goToURL(View v) {
         int id = v.getId();
         LinearLayout layout = (LinearLayout)findViewById(id);
         String tag = (String)layout.getTag();
@@ -39,15 +39,15 @@ public class YoutubeActivity extends AppCompatActivity {
 
 
 
-/*
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setTitle("youtube");
-        set.setJavaScriptEnabled(true);
-        set.setBuiltInZoomControls(true);
-*/
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //setTitle("youtube");
+        //set.setJavaScriptEnabled(true);
+        //set.setBuiltInZoomControls(true);
+
 
 
     }
-
+*/
 }

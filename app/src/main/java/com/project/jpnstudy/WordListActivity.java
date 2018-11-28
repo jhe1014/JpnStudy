@@ -36,7 +36,7 @@ public class WordListActivity extends AppCompatActivity {
         setTitle("단어목록");
 
         adapter = new ListViewAdapter();
-        listview = (ListView) findViewById(R.word_list);
+        listview = (ListView) findViewById(R.id.word_list);
 
         setData();
 
