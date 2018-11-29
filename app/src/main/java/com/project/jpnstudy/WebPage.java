@@ -12,16 +12,15 @@ import android.widget.LinearLayout;
 
 public class WebPage extends AppCompatActivity {
 
-
-   /*  @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webpage);
+        setContentView(R.layout.webpage);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("youtube");
-        set.setJavaScriptEnabled(true);//javascript를 사용할 수 있도록 설정
+       /* set.setJavaScriptEnabled(true);//javascript를 사용할 수 있도록 설정
         set.setBuiltInZoomControls(true);//안드로이드에서 제공하는 줌 아이콘을 사용할 수 있도록 설정
 
 
@@ -29,6 +28,6 @@ public class WebPage extends AppCompatActivity {
 
         WebView webview = (WebView)findViewById(R.id.y_url);
         webview.setWebViewClient(new WebViewClient());
-        WebSettings set = webview.getSettings();
-    }*/
+        WebSettings set = webview.getSettings();*/
+    }
 }

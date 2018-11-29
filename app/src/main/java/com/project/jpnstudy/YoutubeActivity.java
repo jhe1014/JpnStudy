@@ -3,8 +3,10 @@ package com.project.jpnstudy;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -16,6 +18,8 @@ public class YoutubeActivity extends AppCompatActivity {
         setContentView(R.layout.webpage);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("유튜브");
     }
 
 
@@ -38,6 +42,18 @@ public class YoutubeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle("youtube");
 */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { // 툴바 뒤로가기 버튼
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     }
 
 
