@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,19 +15,39 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Tag;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView_left;
     NavigationView navigationView_right;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+    TextView word;
+    //TextView wmeaning = findViewById(R.id.today_word_meaning);
+    //TextView sentence = findViewById(R.id.today_sentence);
+    //TextView smeaning = findViewById(R.id.today_sentence_meaning);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_dehaze_black_24);
         setTitle("");
+
+
 
         navigationView_left.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -91,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.menu05 : // 설정
+                        intent = new Intent(getApplicationContext(), SettingActivity.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.menu06 : // 유튜브
@@ -99,6 +124,24 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+
+        setData();
+    }
+
+    private void setData() {
+        databaseReference.child("Word").child("1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("Name").getValue(String.class);
+                word = (TextView) findViewById(R.id.today_word);
+                word.setText(name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }
