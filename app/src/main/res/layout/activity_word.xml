@@ -22,18 +22,17 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/headSet"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_volume_mute_white_18dp" />
-
-            <ImageButton
-                android:id="@+id/star"
+                android:id="@+id/btn_star"
                 android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/outline_star_white_18dp" />
+            <ImageButton
+                android:id="@+id/btn_headset"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/outline_volume_mute_white_18dp" />
 
         </LinearLayout>
 

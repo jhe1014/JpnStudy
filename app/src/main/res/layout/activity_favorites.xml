@@ -4,15 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Favorites">
+   >
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize = "25dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"/>
 
+    <TextView
+        android:id="@+id/meaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="12dp"
+        android:textSize="20dp"/>
 
-    <include
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/btn_star"
+        android:layout_width="@dimen/list_button"
+        android:layout_height="@dimen/list_button"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="12dp"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <ImageButton
+        android:id="@+id/btn_headset"
+        android:layout_width="@dimen/list_button"
+        android:layout_height="@dimen/list_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"/>
 </android.support.constraint.ConstraintLayout>

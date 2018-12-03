@@ -26,8 +26,7 @@
         <activity android:name=".GraphActivity" />
         <activity android:name=".WebPage" />
         <activity android:name=".Favorites" />
-        <activity android:name=".Word" />
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".Word"></activity>
     </application>
 
 </manifest>
