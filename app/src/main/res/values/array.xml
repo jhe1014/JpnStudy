@@ -17,16 +17,4 @@
     </integer-array>
 
 
-    <string-array name="youtube">
-        <item> OOO채널 </item>
-    </string-array>
-
-
-    <string-array name="y_url">
-        <item> 채널 링크 </item>
-    </string-array>
-
-    <string-array name="y_about">
-        <item> 채널 설명 </item>
-    </string-array>
 </resources>

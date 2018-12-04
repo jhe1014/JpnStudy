@@ -12,7 +12,7 @@ public class Favorites extends AppCompatActivity {
     Toolbar toolbar;
 
     private ListView listview;
-    private ListViewAdapter adapter;
+    private FavoritesAdapter adapter;
 
 
     @Override
@@ -24,7 +24,7 @@ public class Favorites extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("즐겨찾기");
-        adapter = new ListViewAdapter();
+        adapter = new FavoritesAdapter();
         listview = (ListView) findViewById(R.id.favorite_list);
 
         setData();
