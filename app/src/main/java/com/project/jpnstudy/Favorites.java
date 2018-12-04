@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-
 public class Favorites extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -19,7 +18,7 @@ public class Favorites extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites);
+        setContentView(R.layout.favorites_list);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -35,10 +34,10 @@ public class Favorites extends AppCompatActivity {
 
 
     private void setData() {
-        String[] words = getResources().getStringArray(R.array.word);
-        String[] meanings = getResources().getStringArray(R.array.meaning);
-        TypedArray arrResstar = getResources().obtainTypedArray(R.array.resstar);
-        TypedArray arrReshs = getResources().obtainTypedArray(R.array.reshs);
+        String[] words = getResources().getStringArray(R.array.f_word);
+        String[] meanings = getResources().getStringArray(R.array.f_meaning);
+        TypedArray arrResstar = getResources().obtainTypedArray(R.array.f_resstar);
+        TypedArray arrReshs = getResources().obtainTypedArray(R.array.f_reshs);
 
         for(int i = 0; i < arrResstar.length(); i++) {
             FavoritesListData listData = new FavoritesListData();

@@ -33,7 +33,7 @@ public class FavoritesAdapter extends BaseAdapter {
         CustomViewHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorites_list, null, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_favorites, null, false);
 
             holder = new CustomViewHolder();
             holder.textWord = (TextView) convertView.findViewById(R.id.f_word);

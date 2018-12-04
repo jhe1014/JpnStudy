@@ -6,7 +6,7 @@ import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 
 public class SettingPreferenceFragment extends PreferenceFragment {
-    SharedPreferences prefs;
+   // SharedPreferences prefs;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
