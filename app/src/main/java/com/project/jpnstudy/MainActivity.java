@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     TextView word;
-    //TextView wmeaning = findViewById(R.id.today_word_meaning);
-    //TextView sentence = findViewById(R.id.today_sentence);
-    //TextView smeaning = findViewById(R.id.today_sentence_meaning);
+    TextView wmeaning;
+    TextView sentence;
+    TextView smeaning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,20 +115,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setData() {
-       /*databaseReference.child("Word").child("1").addValueEventListener(new ValueEventListener() {
+       databaseReference.child("Word").child("1").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("Name").getValue(String.class);
                 word = (TextView) findViewById(R.id.today_word);
                 Log.v("텍스트", name);
                 word.setText(name);
+
+                String meaning = dataSnapshot.child("Meaning").getValue(String.class);
+                wmeaning = (TextView) findViewById(R.id.today_word_meaning);
+                Log.v("텍스트", meaning);
+                wmeaning.setText(meaning);
+
+                String s_name = dataSnapshot.child("Example1").getValue(String.class);
+                sentence = (TextView) findViewById(R.id.today_sentence);
+                Log.v("텍스트", s_name);
+                sentence.setText(s_name);
+
+                String s_meaning = dataSnapshot.child("Example1_Meaning").getValue(String.class);
+                smeaning = (TextView) findViewById(R.id.today_sentence_meaning);
+                Log.v("텍스트", s_meaning);
+                smeaning.setText(s_meaning);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
     }
 
     @Override

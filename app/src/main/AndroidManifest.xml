@@ -22,6 +22,7 @@
         <activity android:name=".WordListActivity" />
         <activity android:name=".TestLevelSelect" />
         <activity android:name=".YoutubeActivity" />
+        <activity android:name=".SettingActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".GraphActivity" />
         <activity android:name=".WebPage" />
