@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 public class FavoritesAdapter extends AppCompatActivity {
-    Toolbar toolbar;
+   /* Toolbar toolbar;
 
     private ListView listview;
     private ListViewAdapter adapter;
@@ -57,5 +57,5 @@ public class FavoritesAdapter extends AppCompatActivity {
                 }
             }
             return super.onOptionsItemSelected(item);
-        }
+        }*/
     }

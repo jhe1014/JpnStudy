@@ -25,7 +25,7 @@ public class Favorites extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("즐겨찾기");
         adapter = new ListViewAdapter();
-        listview = (ListView) findViewById(R.id.word_list);
+        listview = (ListView) findViewById(R.id.favorite_list);
 
         setData();
 
