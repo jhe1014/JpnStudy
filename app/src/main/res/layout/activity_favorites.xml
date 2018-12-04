@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/word"
+        android:id="@+id/f_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -15,24 +15,24 @@
         android:layout_marginLeft="20dp"/>
 
     <TextView
-        android:id="@+id/meaning"
+        android:id="@+id/f_meaning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
         android:layout_marginTop="12dp"
         android:textSize="20dp"/>
 
-    <ImageButton
-        android:id="@+id/btn_star"
+    <ImageView
+        android:id="@+id/f_star"
         android:layout_width="@dimen/list_button"
         android:layout_height="@dimen/list_button"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="12dp"/>
 
-    <ImageButton
-        android:id="@+id/btn_headset"
+    <ImageView
+        android:id="@+id/f_headset"
         android:layout_width="@dimen/list_button"
         android:layout_height="@dimen/list_button"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="12dp"/>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+
 public class Favorites extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -40,11 +41,11 @@ public class Favorites extends AppCompatActivity {
         TypedArray arrReshs = getResources().obtainTypedArray(R.array.reshs);
 
         for(int i = 0; i < arrResstar.length(); i++) {
-            ListData listData = new ListData();
-            listData.settWord(words[i]);
-            listData.settMeaning(meanings[i]);
-            listData.setStarIcon(arrResstar.getResourceId(i, 0));
-            listData.setHeadsetIcon(arrReshs.getResourceId(i, 0));
+            FavoritesListData listData = new FavoritesListData();
+            listData.setf_Word(words[i]);
+            listData.setf_Meaning(meanings[i]);
+            listData.setf_StarIcon(arrResstar.getResourceId(i, 0));
+            listData.setf_HeadsetIcon(arrReshs.getResourceId(i, 0));
 
             adapter.addItem(listData);
         }
