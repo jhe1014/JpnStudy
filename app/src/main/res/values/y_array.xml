@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="y_title">
+        <item> 제목 </item>
+    </string-array>
+
+    <string-array name="y_data">
+        <item> 설명 </item>
+    </string-array>
+</resources>
