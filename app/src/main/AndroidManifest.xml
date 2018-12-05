@@ -27,7 +27,10 @@
         <activity android:name=".GraphActivity" />
         <activity android:name=".WebPage" />
         <activity android:name=".Favorites" />
-        <activity android:name=".Word"></activity>
+        <activity android:name=".Word" />
+        <activity android:name=".YoutubeList" />
+        <activity android:name=".YoutubeListData" />
+        <activity android:name=".Settingg"></activity>
     </application>
 
 </manifest>
