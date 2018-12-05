@@ -35,7 +35,15 @@ public class TestLevelSelect extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        int select_level = -1;
         Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+        switch (v.getId()) {
+            case R.id.jlpt_n1 : select_level = 1; break;
+            case R.id.jlpt_n2 : select_level = 2; break;
+            case R.id.jlpt_n3 : select_level = 3; break;
+            case R.id.jlpt_n4 : select_level = 4; break;
+        }
+        intent.putExtra("select_level", select_level);
         startActivity(intent);
     }
 

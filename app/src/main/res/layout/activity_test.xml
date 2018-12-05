@@ -33,6 +33,7 @@
              />
 
         <RadioGroup
+            android:id="@+id/test_rg"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -90,6 +91,13 @@
                 android:layout_gravity="left"
                 android:text="풀이" />
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/test_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결과값"
+            />
 
         <TextView
             android:id="@+id/solution"
