@@ -30,7 +30,6 @@
         <activity android:name=".Word" />
         <activity android:name=".YoutubeList" />
         <activity android:name=".YoutubeListData" />
-        <activity android:name=".Settingg"></activity>
     </application>
 
 </manifest>
