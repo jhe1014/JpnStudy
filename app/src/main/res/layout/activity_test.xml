@@ -96,7 +96,6 @@
             android:id="@+id/test_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="결과값"
             />
 
         <TextView
@@ -108,6 +107,13 @@
             android:text="풀이"
             android:textSize="@dimen/test"
             />
+
+        <Button
+            android:id="@+id/test_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="다음"/>
     </LinearLayout>
 
 </RelativeLayout>

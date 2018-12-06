@@ -1,6 +1,7 @@
 package com.project.jpnstudy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,15 +29,19 @@ public class TestActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     TextView Test_Question;
+    TextView result;
     RadioButton op1;
     RadioButton op2;
     RadioButton op3;
     RadioButton op4;
     Button ok_btn;
+    Button next_btn;
 
     Integer correct_answer;
     Integer select_answer;
+    Integer i = 1;
     private int selectedID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +52,28 @@ public class TestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("문제은행");
 
+        final View nb = findViewById(R.id.test_next_button);
+        nb.setVisibility(View.INVISIBLE);
+
         Intent intent = getIntent();
         select_level = intent.getExtras().getInt("select_level");
 
-        setData();
+        setData(i);
 
         ok_btn = findViewById(R.id.okButton);
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView result = findViewById(R.id.test_result);
+                result = findViewById(R.id.test_result);
                 if(select_answer == correct_answer) {
                     result.setText("정답입니다!");
+                    nb.setVisibility(View.VISIBLE);
                 }
                 else result.setText("오답입니다ㅠㅠ");
             }
         });
 
-        RadioGroup wrg = findViewById(R.id.test_rg);
+        final RadioGroup wrg = findViewById(R.id.test_rg);
         wrg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -79,23 +88,41 @@ public class TestActivity extends AppCompatActivity {
                 Log.v("옵션값", Integer.toString(select_answer));
             }
         });
+
+        next_btn = findViewById(R.id.test_next_button);
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i = i + 1;
+                nb.setVisibility(View.INVISIBLE);
+                wrg.clearCheck();
+                result = findViewById(R.id.test_result);
+                result.setText("");
+                setData(i);
+
+            }
+        });
     }
 
-    private void setData() {
-        switch (select_level) {
-            case 1 : {
-                databaseReference = databaseReference.child("Test_n1");
-                break;
+    private void setData(Integer qn) {
+        if (qn == 1) {
+            switch (select_level) {
+                case 1: {
+                    databaseReference = databaseReference.child("Test_n1");
+                    break;
+                }
+                case 2: {
+                    databaseReference = databaseReference.child("Test_n2");
+                    break;
+                }
+                case 3:
+                    break;
+                case 4:
+                    break;
             }
-            case 2 : {
-                databaseReference = databaseReference.child("Test_n2");
-                break;
-            }
-            case 3 : break;
-            case 4 : break;
         }
 
-        databaseReference.child("1").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(qn.toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String question = dataSnapshot.child("Question").getValue(String.class);
@@ -119,7 +146,7 @@ public class TestActivity extends AppCompatActivity {
                 op4.setText(answer4);
 
                 correct_answer = dataSnapshot.child("Correct").getValue(Integer.class);
-                Log.v("결과값", Integer.toString(correct_answer));
+                //Log.v("결과값", Integer.toString(correct_answer));
             }
 
             @Override
@@ -135,6 +162,7 @@ public class TestActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
+                i = 1;
                 finish();
                 return true;
             }
