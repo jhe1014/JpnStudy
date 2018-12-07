@@ -2,6 +2,7 @@ package com.project.jpnstudy;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -99,8 +100,7 @@ public class TestActivity extends AppCompatActivity {
                 result = findViewById(R.id.test_result);
                 result.setText("");
                 setData(i);
-
-            }
+                }
         });
     }
 
@@ -125,28 +125,36 @@ public class TestActivity extends AppCompatActivity {
         databaseReference.child(qn.toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String question = dataSnapshot.child("Question").getValue(String.class);
-                Test_Question = (TextView) findViewById(R.id.test);
-                Test_Question.setText(question);
+                if(!dataSnapshot.exists()) {
+                    i = 0;
+                    Intent intent2 = new Intent(getApplicationContext(), TestEndActivity.class);
+                    startActivity(intent2);
+                }
 
-                String answer1 = dataSnapshot.child("Answer1").getValue(String.class);
-                op1 = (RadioButton) findViewById(R.id.test_option1);
-                op1.setText(answer1);
+                else {
+                    String question = dataSnapshot.child("Question").getValue(String.class);
+                    Test_Question = (TextView) findViewById(R.id.test);
+                    Test_Question.setText(question);
 
-                String answer2 = dataSnapshot.child("Answer2").getValue(String.class);
-                op2 = (RadioButton) findViewById(R.id.test_option2);
-                op2.setText(answer2);
+                    String answer1 = dataSnapshot.child("Answer1").getValue(String.class);
+                    op1 = (RadioButton) findViewById(R.id.test_option1);
+                    op1.setText(answer1);
 
-                String answer3 = dataSnapshot.child("Answer3").getValue(String.class);
-                op3 = (RadioButton) findViewById(R.id.test_option3);
-                op3.setText(answer3);
+                    String answer2 = dataSnapshot.child("Answer2").getValue(String.class);
+                    op2 = (RadioButton) findViewById(R.id.test_option2);
+                    op2.setText(answer2);
 
-                String answer4 = dataSnapshot.child("Answer4").getValue(String.class);
-                op4 = (RadioButton) findViewById(R.id.test_option4);
-                op4.setText(answer4);
+                    String answer3 = dataSnapshot.child("Answer3").getValue(String.class);
+                    op3 = (RadioButton) findViewById(R.id.test_option3);
+                    op3.setText(answer3);
 
-                correct_answer = dataSnapshot.child("Correct").getValue(Integer.class);
-                //Log.v("결과값", Integer.toString(correct_answer));
+                    String answer4 = dataSnapshot.child("Answer4").getValue(String.class);
+                    op4 = (RadioButton) findViewById(R.id.test_option4);
+                    op4.setText(answer4);
+
+                    correct_answer = dataSnapshot.child("Correct").getValue(Integer.class);
+                    //Log.v("결과값", Integer.toString(correct_answer));
+                }
             }
 
             @Override
