@@ -1,5 +1,6 @@
 package com.project.jpnstudy;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,14 +28,17 @@ public class WordTestActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     TextView Word;
+    TextView result;
     RadioButton op1;
     RadioButton op2;
     RadioButton op3;
     RadioButton op4;
     Button ok_btn;
+    Button next_btn;
 
     Integer correct_answer;
     Integer select_answer;
+    Integer i = 1;
     private int selectedID;
 
     @Override
@@ -47,21 +51,25 @@ public class WordTestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("단어퀴즈");
 
-        setData();
+        final View nb = findViewById(R.id.word_next_button);
+        nb.setVisibility(View.INVISIBLE);
+
+        setData(i);
 
         ok_btn = findViewById(R.id.word_test_ok);
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView result = findViewById(R.id.word_test_result);
+                result = findViewById(R.id.word_test_result);
                 if(select_answer == correct_answer) {
                     result.setText("정답입니다!");
+                    nb.setVisibility(View.VISIBLE);
                 }
                 else result.setText("오답입니다ㅠㅠ");
             }
         });
 
-        RadioGroup wrg = findViewById(R.id.word_test_rg);
+        final RadioGroup wrg = findViewById(R.id.word_test_rg);
         wrg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -76,34 +84,54 @@ public class WordTestActivity extends AppCompatActivity {
                 Log.v("옵션값", Integer.toString(select_answer));
             }
         });
+
+        next_btn = findViewById(R.id.word_next_button);
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i = i + 1;
+                nb.setVisibility(View.INVISIBLE);
+                wrg.clearCheck();
+                result = findViewById(R.id.word_test_result);
+                result.setText("");
+                setData(i);
+            }
+        });
     }
 
-    private void setData() {
-        databaseReference.child("Word_Test").child("1").addValueEventListener(new ValueEventListener() {
+    private void setData(Integer qn) {
+        databaseReference.child("Word").child(qn.toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("Name").getValue(String.class);
-                Word = (TextView) findViewById(R.id.word_test);
-                Word.setText(name);
+                if (!dataSnapshot.exists()) {
+                    i = 0;
+                    Intent intent2 = new Intent(getApplicationContext(), TestEndActivity.class);
+                    startActivity(intent2);
+                    finish();
+                } else {
+                    String name = dataSnapshot.child("Name").getValue(String.class);
+                    Word = (TextView) findViewById(R.id.word_test);
+                    Word.setText(name);
 
-                String answer1 = dataSnapshot.child("Answer1").getValue(String.class);
-                op1 = (RadioButton) findViewById(R.id.word_option1);
-                op1.setText(answer1);
+                    String answer1 = dataSnapshot.child("Answer1").getValue(String.class);
+                    op1 = (RadioButton) findViewById(R.id.word_option1);
+                    op1.setText(answer1);
 
-                String answer2 = dataSnapshot.child("Answer2").getValue(String.class);
-                op2 = (RadioButton) findViewById(R.id.word_option2);
-                op2.setText(answer2);
+                    String answer2 = dataSnapshot.child("Answer2").getValue(String.class);
+                    op2 = (RadioButton) findViewById(R.id.word_option2);
+                    op2.setText(answer2);
 
-                String answer3 = dataSnapshot.child("Answer3").getValue(String.class);
-                op3 = (RadioButton) findViewById(R.id.word_option3);
-                op3.setText(answer3);
+                    String answer3 = dataSnapshot.child("Answer3").getValue(String.class);
+                    op3 = (RadioButton) findViewById(R.id.word_option3);
+                    op3.setText(answer3);
 
-                String answer4 = dataSnapshot.child("Answer4").getValue(String.class);
-                op4 = (RadioButton) findViewById(R.id.word_option4);
-                op4.setText(answer4);
+                    String answer4 = dataSnapshot.child("Answer4").getValue(String.class);
+                    op4 = (RadioButton) findViewById(R.id.word_option4);
+                    op4.setText(answer4);
 
-                correct_answer = dataSnapshot.child("Correct").getValue(Integer.class);
-                Log.v("결과값", Integer.toString(correct_answer));
+                    correct_answer = dataSnapshot.child("Correct").getValue(Integer.class);
+                    //Log.v("결과값", Integer.toString(correct_answer));
+                }
             }
 
             @Override
@@ -117,6 +145,7 @@ public class WordTestActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
+                i = 1;
                 finish();
                 return true;
             }

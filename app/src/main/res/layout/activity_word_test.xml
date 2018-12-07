@@ -85,6 +85,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="결과출력"/>
+
+        <Button
+            android:id="@+id/word_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="다음"/>
     </LinearLayout>
 
 </RelativeLayout>

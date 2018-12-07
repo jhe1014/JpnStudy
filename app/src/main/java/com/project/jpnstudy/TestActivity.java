@@ -129,8 +129,8 @@ public class TestActivity extends AppCompatActivity {
                     i = 0;
                     Intent intent2 = new Intent(getApplicationContext(), TestEndActivity.class);
                     startActivity(intent2);
+                    finish();
                 }
-
                 else {
                     String question = dataSnapshot.child("Question").getValue(String.class);
                     Test_Question = (TextView) findViewById(R.id.test);
