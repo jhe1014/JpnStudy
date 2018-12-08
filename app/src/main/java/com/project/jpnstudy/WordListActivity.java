@@ -1,17 +1,33 @@
 package com.project.jpnstudy;
 
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class WordListActivity extends AppCompatActivity {
     Toolbar toolbar;
 
+    ArrayList<ListData> origin_list = new ArrayList<ListData>();
+    ListData temp;
     private ListView listview;
     private ListViewAdapter adapter;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +39,7 @@ public class WordListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("단어목록");
 
-        adapter = new ListViewAdapter();
+        adapter = new ListViewAdapter(getApplicationContext(), R.id.word_list, origin_list);
         listview = (ListView) findViewById(R.id.word_list);
 
         setData();
@@ -32,20 +48,29 @@ public class WordListActivity extends AppCompatActivity {
     }
 
     private void setData() {
-        String[] words = getResources().getStringArray(R.array.word);
-        String[] meanings = getResources().getStringArray(R.array.meaning);
-        TypedArray arrResstar = getResources().obtainTypedArray(R.array.resstar);
-        TypedArray arrReshs = getResources().obtainTypedArray(R.array.reshs);
+        databaseReference.child("Word").addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               adapter.clear();
 
-        for(int i = 0; i < arrResstar.length(); i++) {
-            ListData listData = new ListData();
-            listData.settWord(words[i]);
-            listData.settMeaning(meanings[i]);
-            listData.setStarIcon(arrResstar.getResourceId(i, 0));
-            listData.setHeadsetIcon(arrReshs.getResourceId(i, 0));
+               Integer rn = 1;
+               while (dataSnapshot.child(rn.toString()).exists()) {
+                   String word = dataSnapshot.child(rn.toString()).child("Name").getValue(String.class);
+                   //Log.v("단어", word);
+                   String meaning = dataSnapshot.child(rn.toString()).child("Meaning").getValue(String.class);
+                   //Log.v("뜻", meaning);
 
-            adapter.addItem(listData);
-        }
+                   temp = new ListData(word, meaning);
+                   origin_list.add(temp);
+                   rn = rn + 1;
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
     }
 
     @Override

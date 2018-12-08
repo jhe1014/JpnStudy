@@ -5,68 +5,48 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import java.util.ArrayList;
 
-public class ListViewAdapter extends BaseAdapter {
-    private ArrayList<ListData> listCustom = new ArrayList<>();
+import static java.security.AccessController.getContext;
 
-    @Override
-    public int getCount() {
-        return listCustom.size();
-    }
+public class ListViewAdapter extends ArrayAdapter<ListData> {
+    private ArrayList<ListData> listCustom;
 
-    @Override
-    public Object getItem(int position) {
-        return listCustom.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+    public ListViewAdapter(Context context, int textViewResourceId, ArrayList<ListData> items) {
+        super(context, textViewResourceId, items);
+        this.listCustom = items;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CustomViewHolder holder;
+        View v = convertView;
 
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.wordlist_item, null, false);
-
-            holder = new CustomViewHolder();
-            holder.textWord = (TextView) convertView.findViewById(R.id.word);
-            holder.textMeaning = (TextView) convertView.findViewById(R.id.meaning);
-            holder.imgStar = (ImageView) convertView.findViewById(R.id.Image_star);
-            holder.imgHead = (ImageView) convertView.findViewById(R.id.Image_headset);
-
-            convertView.setTag(holder);
-        } else {
-            holder = (CustomViewHolder) convertView.getTag();
+        if (v == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inflater.inflate(R.layout.wordlist_item, null);
         }
 
-        ListData listdata = listCustom.get(position);
+        ListData p = listCustom.get(position);
 
-        holder.textWord.setText(listdata.gettWord());
-        holder.textMeaning.setText(listdata.gettMeaning());
-        holder.imgStar.setImageResource(listdata.getStarIcon());
-        holder.imgHead.setImageResource(listdata.getHeadsetIcon());
+        if (p != null) {
+            TextView tw = (TextView) v.findViewById(R.id.word);
+            TextView tm = (TextView) v.findViewById(R.id.meaning);
 
-        return convertView;
-    }
+            tw.setText(p.gettWord());
+            tm.setText(p.gettMeaning());
 
-    class CustomViewHolder {
-        TextView textWord;
-        TextView textMeaning;
-        ImageView imgStar;
-        ImageView imgHead;
-    }
+            ImageButton ib_star = (ImageButton) v.findViewById(R.id.btn_star);
+            ImageButton ib_hs = (ImageButton) v.findViewById(R.id.btn_headset);
+        }
 
-    public void addItem(ListData listData) {
-        listCustom.add(listData);
+        return v;
     }
 
 }
