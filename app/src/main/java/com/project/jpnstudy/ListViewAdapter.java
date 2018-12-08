@@ -1,6 +1,7 @@
 package com.project.jpnstudy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.security.AccessController.getContext;
 
@@ -22,6 +24,18 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
     public ListViewAdapter(Context context, int textViewResourceId, ArrayList<ListData> items) {
         super(context, textViewResourceId, items);
         this.listCustom = items;
+    }
+
+    public int getCount(){
+        return listCustom.size();
+    }
+
+    public ListData getItem(int position) {
+        return listCustom.get(position);
+    }
+
+    public int getPosition(ListData item) {
+        return listCustom.indexOf(item);
     }
 
     @Override
@@ -42,11 +56,10 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
             tw.setText(p.gettWord());
             tm.setText(p.gettMeaning());
 
-            ImageButton ib_star = (ImageButton) v.findViewById(R.id.btn_star);
-            ImageButton ib_hs = (ImageButton) v.findViewById(R.id.btn_headset);
+            ImageView ib_star = (ImageView) v.findViewById(R.id.btn_star);
+            ImageView ib_hs = (ImageView) v.findViewById(R.id.btn_headset);
         }
 
         return v;
     }
-
 }

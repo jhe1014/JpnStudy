@@ -9,11 +9,11 @@
     </string-array>
 
     <integer-array name="f_resstar">
-        <item>@drawable/outline_star_border_white_18dp</item>
+        <item>@drawable/baseline_star_border_black_24</item>
     </integer-array>
 
     <integer-array name="f_reshs">
-        <item>@drawable/outline_volume_mute_white_18dp</item>
+        <item>@drawable/baseline_volume_mute_black_24</item>
     </integer-array>
 
 </resources>

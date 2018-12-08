@@ -1,5 +1,6 @@
 package com.project.jpnstudy;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class WordListActivity extends AppCompatActivity {
+public class WordListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Toolbar toolbar;
 
     ArrayList<ListData> origin_list = new ArrayList<ListData>();
@@ -45,6 +48,16 @@ public class WordListActivity extends AppCompatActivity {
         setData();
 
         listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(this);
+    }
+
+    public void onItemClick (AdapterView<?> parent, View v, int position, long id) {
+        ListData data = origin_list.get(position);
+
+        Intent intent = new Intent(this, Word.class);
+        intent.putExtra("number", position);
+        startActivity(intent);
     }
 
     private void setData() {
