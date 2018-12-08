@@ -1,12 +1,17 @@
 package com.project.jpnstudy;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,10 +21,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Locale;
+
 public class Word extends AppCompatActivity {
     Toolbar toolbar;
 
     Integer row_num;
+
+    private TextToSpeech tts;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -30,6 +40,7 @@ public class Word extends AppCompatActivity {
     TextView d_meaning1;
     TextView d_sentence2;
     TextView d_meaning2;
+    ImageButton sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +57,30 @@ public class Word extends AppCompatActivity {
         Log.v("행", row_num.toString());
 
         setData(row_num);
+
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.JAPANESE);
+                }
+            }
+        });
+
+        sound = (ImageButton) findViewById(R.id.word_headset);
+        sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = d_word.getText().toString();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ttsGreater21(text);
+                } else {
+                    ttsUnder20(text);
+                }
+
+            }
+        });
 
     }
 
@@ -86,7 +121,6 @@ public class Word extends AppCompatActivity {
         });
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -97,4 +131,29 @@ public class Word extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(tts !=null){
+            tts.stop();
+            tts.shutdown();
+        }
+    }
+
+
+    @SuppressWarnings("deprecation")
+    private void ttsUnder20(String text) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "MessageId");
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void ttsGreater21(String text) {
+        String utteranceId=this.hashCode() + "";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+    }
+
 }
