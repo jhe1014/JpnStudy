@@ -29,7 +29,6 @@
         <activity android:name=".Favorites" />
         <activity android:name=".Word" />
         <activity android:name=".YoutubeList" />
-        <activity android:name=".YoutubeListData" />
         <activity android:name=".TestEndActivity"></activity>
     </application>
 

@@ -11,72 +11,128 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_star"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_star_white_18dp" />
-            <ImageButton
-                android:id="@+id/btn_headset"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_volume_mute_white_18dp" />
+            <include
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar"
+                android:orientation="vertical"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="14dp">
+
+
+                <TextView
+                    android:id="@+id/word"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingTop="@dimen/activity_vertical_margin"
+                    android:text="@string/word"
+                    android:textSize="@dimen/today_word_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/word_meaning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:text="@string/meaning"
+                    android:textSize="@dimen/meaning_size" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    >
+
+                    <ImageButton
+                        android:id="@+id/word_star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/outline_star_white_18dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <ImageButton
+                        android:id="@+id/word_headset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/outline_volume_mute_white_18dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        />
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#000"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:layout_marginBottom="17dp"
+                        android:layout_marginTop="17dp"/>
+
+                <TextView
+                    android:id="@+id/_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:text="@string/sentence"
+                    android:textSize="@dimen/today_sentence_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/_meaning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:text="@string/meaning"
+                    android:textSize="@dimen/meaning_size" />
+
+                <TextView
+                    android:id="@+id/_s_word"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:text="@string/sentence"
+                    android:textSize="@dimen/today_sentence_size"
+                    android:textStyle="bold" />
+
+                    <TextView
+                    android:id="@+id/_s_meaning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:text="@string/meaning"
+                    android:textSize="@dimen/meaning_size" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <include
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
-
-
-        <TextView
-            android:id="@+id/today_word"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:text="@string/word"
-            android:textSize="@dimen/today_word_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/today_word_meaning"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:text="@string/meaning"
-            android:textSize="@dimen/meaning_size" />
-
-    </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000"/>
-
-    </RelativeLayout>
 </LinearLayout>
