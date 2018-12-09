@@ -41,6 +41,11 @@ public class Word extends AppCompatActivity {
     TextView d_sentence2;
     TextView d_meaning2;
     ImageButton sound;
+    ImageButton like;
+    public Integer num = 1;
+
+    String name;
+    String meaning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,19 @@ public class Word extends AppCompatActivity {
             }
         });
 
+        like = (ImageButton) findViewById(R.id.word_star);
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                writeFavoriteData(name, meaning);
+                num++;
+            }
+        });
+    }
+
+    private void writeFavoriteData(String word, String meaning) {
+        WordData data = new WordData(word, meaning);
+        databaseReference.child("Like").child(num.toString()).setValue(data);
     }
 
     private void setData(Integer qn) {
@@ -89,11 +107,11 @@ public class Word extends AppCompatActivity {
         databaseReference.child("Word").child(qn.toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("Name").getValue(String.class);
+                name = dataSnapshot.child("Name").getValue(String.class);
                 d_word = (TextView) findViewById(R.id.word_detail);
                 d_word.setText(name);
 
-                String meaning = dataSnapshot.child("Meaning").getValue(String.class);
+                meaning = dataSnapshot.child("Meaning").getValue(String.class);
                 d_meaning = (TextView) findViewById(R.id.meaning_detail);
                 d_meaning.setText(meaning);
 
@@ -156,4 +174,18 @@ public class Word extends AppCompatActivity {
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
     }
 
+}
+
+class WordData {
+    public String word;
+    public String meaning;
+
+    public WordData() {
+
+    }
+
+    public WordData(String word, String meaning) {
+        this.word = word;
+        this.meaning = meaning;
+    }
 }

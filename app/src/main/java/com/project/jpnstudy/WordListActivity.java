@@ -2,6 +2,7 @@ package com.project.jpnstudy;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,9 +20,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WordListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Toolbar toolbar;
+
+    private TextToSpeech tts;
 
     ArrayList<ListData> origin_list = new ArrayList<ListData>();
     ListData temp;
@@ -84,6 +88,16 @@ public class WordListActivity extends AppCompatActivity implements AdapterView.O
 
            }
        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(tts !=null){
+            tts.stop();
+            tts.shutdown();
+        }
     }
 
     @Override
