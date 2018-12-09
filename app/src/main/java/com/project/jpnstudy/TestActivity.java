@@ -31,12 +31,14 @@ public class TestActivity extends AppCompatActivity {
 
     TextView Test_Question;
     TextView result;
+    TextView Test_Solution;
     RadioButton op1;
     RadioButton op2;
     RadioButton op3;
     RadioButton op4;
     Button ok_btn;
     Button next_btn;
+    Button solution_btn;
 
     Integer correct_answer;
     Integer select_answer;
@@ -55,6 +57,9 @@ public class TestActivity extends AppCompatActivity {
 
         final View nb = findViewById(R.id.test_next_button);
         nb.setVisibility(View.INVISIBLE);
+
+        final View s = findViewById(R.id.solution);
+        s.setVisibility(View.INVISIBLE);
 
         Intent intent = getIntent();
         select_level = intent.getExtras().getInt("select_level");
@@ -90,12 +95,26 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
+        solution_btn = findViewById(R.id.solutionButton);
+        solution_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(s.getVisibility() != View.VISIBLE) {
+                    s.setVisibility(View.VISIBLE);
+                }
+                else {
+                    s.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
         next_btn = findViewById(R.id.test_next_button);
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 i = i + 1;
                 nb.setVisibility(View.INVISIBLE);
+                s.setVisibility(View.INVISIBLE);
                 wrg.clearCheck();
                 result = findViewById(R.id.test_result);
                 result.setText("");
@@ -154,6 +173,10 @@ public class TestActivity extends AppCompatActivity {
 
                     correct_answer = dataSnapshot.child("Correct").getValue(Integer.class);
                     //Log.v("결과값", Integer.toString(correct_answer));
+
+                    String solution = dataSnapshot.child("Solution").getValue(String.class);
+                    Test_Solution = (TextView) findViewById(R.id.solution);
+                    Test_Solution.setText(solution);
                 }
             }
 

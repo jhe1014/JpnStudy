@@ -105,6 +105,7 @@
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:text="풀이"
+            android:textColor="#318c72"
             android:textSize="@dimen/test"
             />
 

@@ -19,7 +19,6 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".GraphActivity" />
-        <activity android:name=".WebPage" />
         <activity android:name=".Favorites" />
         <activity android:name=".Word" />
         <activity android:name=".TestEndActivity" />
