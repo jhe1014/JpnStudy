@@ -1,64 +1,56 @@
 package com.project.jpnstudy;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
-class YoutubeListAdapter extends BaseAdapter {
+class YoutubeListAdapter extends ArrayAdapter<YoutubeListData> {
+    private ArrayList<YoutubeListData> listCustom;
 
-            private ArrayList<YoutubeListData> listCustom = new ArrayList<>();
+    public YoutubeListAdapter(Context context, int textViewResourceId, ArrayList<YoutubeListData> items) {
+        super(context, textViewResourceId, items);
+        this.listCustom = items;
+    }
 
-            @Override
-            public int getCount() {
-                return listCustom.size();
-            }
+    public int getCount() {
+        return listCustom.size();
+    }
 
-            @Override
-            public Object getItem(int position) {
-                return listCustom.get(position);
-            }
+    public YoutubeListData getItem(int position) {
+        return listCustom.get(position);
+    }
 
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
+    public int getPosition(YoutubeListData item) {
+        return listCustom.indexOf(item);
+    }
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                CustomViewHolder holder;
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = convertView;
 
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_youtube_list_data, null, false);
-//////////////
-                    holder = new CustomViewHolder();
-                    //holder.textWord = (TextView) convertView.findViewById(R.id.f_word);
-                    //holder.textMeaning = (TextView) convertView.findViewById(R.id.f_meaning);
-///////////////
-                    convertView.setTag(holder);
-                } else {
-                    holder = (CustomViewHolder) convertView.getTag();
-                }
-
-                YoutubeListData y_listdata = listCustom.get(position);
-
-                holder.textWord.setText(y_listdata.gety_data());
-                holder.textMeaning.setText(y_listdata.gety_title());
-                return convertView;
-            }
-
-            class CustomViewHolder {
-                TextView textWord;
-                TextView textMeaning;
-            }
-
-            public void addItem(YoutubeListData listData) {
-                listCustom.add(listData);
-            }
-
+        if (v == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inflater.inflate(R.layout.youtube_list_data, null);
         }
+
+        YoutubeListData p = listCustom.get(position);
+
+        if (p != null) {
+            final TextView tw = (TextView) v.findViewById(R.id.y_title);
+
+            tw.setText(p.gety_title());
+        }
+
+        return v;
+    }
+}
 

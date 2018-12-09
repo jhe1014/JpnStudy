@@ -10,14 +10,12 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize = "25dp"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/f_meaning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="60dp"
         android:textSize="20dp"/>
 
