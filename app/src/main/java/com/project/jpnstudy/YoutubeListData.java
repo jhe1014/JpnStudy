@@ -1,6 +1,6 @@
 package com.project.jpnstudy;
 
-class YoutubeitesListData extends FavoritesListData {
+class YoutubeListData {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     private String y_title;
     private String y_data;

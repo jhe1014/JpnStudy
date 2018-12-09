@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-class YoutubeListAdaptr extends BaseAdapter {
+class YoutubeListAdapter extends BaseAdapter {
 
-            private ArrayList<YoutubeitesListData> listCustom = new ArrayList<>();
+            private ArrayList<YoutubeListData> listCustom = new ArrayList<>();
 
             @Override
             public int getCount() {
@@ -36,15 +36,15 @@ class YoutubeListAdaptr extends BaseAdapter {
                     convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_youtube_list_data, null, false);
 //////////////
                     holder = new CustomViewHolder();
-                    holder.textWord = (TextView) convertView.findViewById(R.id.f_word);
-                    holder.textMeaning = (TextView) convertView.findViewById(R.id.f_meaning);
+                    //holder.textWord = (TextView) convertView.findViewById(R.id.f_word);
+                    //holder.textMeaning = (TextView) convertView.findViewById(R.id.f_meaning);
 ///////////////
                     convertView.setTag(holder);
                 } else {
                     holder = (CustomViewHolder) convertView.getTag();
                 }
 
-                YoutubeitesListData y_listdata = listCustom.get(position);
+                YoutubeListData y_listdata = listCustom.get(position);
 
                 holder.textWord.setText(y_listdata.gety_data());
                 holder.textMeaning.setText(y_listdata.gety_title());
@@ -56,7 +56,7 @@ class YoutubeListAdaptr extends BaseAdapter {
                 TextView textMeaning;
             }
 
-            public void addItem(YoutubeitesListData listData) {
+            public void addItem(YoutubeListData listData) {
                 listCustom.add(listData);
             }
 
