@@ -9,15 +9,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-public class YoutubeActivity extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
+public class YoutubeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     Toolbar toolbar;
 
+    ArrayList<ListData> origin_list = new ArrayList<ListData>();
+    ListData temp;
+
     private ListView listview;
-    private YoutubeListAdaptr adapter;
-    private int j;
+    private YoutubeListAdapter adapter;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +40,21 @@ public class YoutubeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("유튜브");
-        adapter = new YoutubeListAdaptr();
+
+        adapter = new YoutubeListAdapter();
         listview = (ListView) findViewById(R.id.youtube_list);
 
 
         setData();
 
         listview.setAdapter(adapter);
+
+       listview.setOnItemClickListener(this);
+    }
+    public void onItemClick (AdapterView<?> parent, View v, int position, long id) {
+
+
+
     }
 
     private void setData() {

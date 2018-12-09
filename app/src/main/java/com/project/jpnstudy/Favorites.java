@@ -1,11 +1,14 @@
 package com.project.jpnstudy;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,16 +19,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Favorites extends AppCompatActivity {
+public class Favorites extends  AppCompatActivity implements AdapterView.OnItemClickListener {
+
     Toolbar toolbar;
 
-    ArrayList<FavoritesListData> favorites_list = new ArrayList<FavoritesListData>();
-    FavoritesListData temp;
-    private ListView f_listview;
+    ArrayList<ListData> origin_list = new ArrayList<ListData>();
+    ListData temp;
+
+    private ListView listview;
     private FavoritesAdapter adapter;
+
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +44,39 @@ public class Favorites extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("즐겨찾기");
 
-        adapter = new FavoritesAdapter(getApplicationContext(), R.id.favorite_list, favorites_list);
-        f_listview = (ListView) findViewById(R.id.favorite_list);
+        adapter = new FavoritesAdapter(getApplicationContext(), R.id.favorite_list, origin_list);
+        listview = (ListView) findViewById(R.id.favorite_list);
 
         setData();
 
-        f_listview.setAdapter(adapter);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(this);
+    }
+
+    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+        ListData data = origin_list.get(position);
+
+        Intent intent = new Intent(this, Word.class);
+        intent.putExtra("number", position);
+        startActivity(intent);
     }
 
     private void setData() {
-        databaseReference.child("Like").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Word").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 adapter.clear();
 
                 Integer rn = 1;
                 while (dataSnapshot.child(rn.toString()).exists()) {
-                    String word = dataSnapshot.child(rn.toString()).child("word").getValue(String.class);
+                    String word = dataSnapshot.child(rn.toString()).child("Name").getValue(String.class);
                     //Log.v("단어", word);
-                    String meaning = dataSnapshot.child(rn.toString()).child("meaning").getValue(String.class);
+                    String meaning = dataSnapshot.child(rn.toString()).child("Meaning").getValue(String.class);
                     //Log.v("뜻", meaning);
 
-                    temp = new FavoritesListData(word, meaning);
-                    favorites_list.add(temp);
+                    temp = new ListData(word, meaning);
+                    origin_list.add(temp);
                     rn = rn + 1;
                 }
             }
