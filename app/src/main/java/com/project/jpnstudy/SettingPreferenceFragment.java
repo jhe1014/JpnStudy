@@ -16,17 +16,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class SettingPreferenceFragment extends PreferenceFragment {
-    // SharedPreferences prefs;
-    private Context mContext;
     private Activity mActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_preference);
-       // prefs.registerOnSharedPreferenceChangeListener(prefListener);
 
-        mContext = this.getActivity();
         mActivity = this.getActivity();
 
         final SwitchPreference lockStatus = (SwitchPreference) findPreference("lock");
