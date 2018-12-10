@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Random;
+
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     TextView sentence;
     TextView smeaning;
 
+    Integer i = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_dehaze_black_24);
         setTitle("");
-
-
 
         navigationView_left.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -111,11 +113,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setData();
+        Random random = new Random();
+        i = random.nextInt(11)+1;
+
+        setData(i);
     }
 
-    private void setData() {
-       databaseReference.child("Word").child("1").addValueEventListener(new ValueEventListener() {
+    private void setData(Integer ln) {
+       databaseReference.child("Word").child(ln.toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("Name").getValue(String.class);
