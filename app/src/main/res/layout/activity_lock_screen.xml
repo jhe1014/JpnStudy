@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#85e1d2"
+    android:orientation="vertical"
+    tools:context=".LockScreenActivity">
+
+    <TextView
+        android:id="@+id/lock_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        android:text="단어"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="80dp"/>
+
+    <TextView
+        android:id="@+id/lock_meaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="뜻"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/small_label"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="50dp"
+        android:clickable="true"
+        android:src="@drawable/baseline_lock_white_36" />
+
+</LinearLayout>
