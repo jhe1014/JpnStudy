@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +31,8 @@ import java.util.Locale;
 
 import static java.security.AccessController.getContext;
 
-public class ListViewAdapter extends ArrayAdapter<ListData> implements TextToSpeech.OnInitListener{
+public class ListViewAdapter extends ArrayAdapter<ListData>{
     private ArrayList<ListData> listCustom;
-
-    private TextToSpeech tts;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -90,8 +89,9 @@ public class ListViewAdapter extends ArrayAdapter<ListData> implements TextToSpe
                     //Log.v("단어", text);
 
                     if(p != null) {
-                        //tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-                        Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+                        //onInit(TextToSpeech.SUCCESS);
+                        WordListActivity.tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                        //Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -119,13 +119,6 @@ public class ListViewAdapter extends ArrayAdapter<ListData> implements TextToSpe
     private void writeFavoriteData(String word, String meaning) {
         WordData data = new WordData(word, meaning);
         databaseReference.child("Like").child(num.toString()).setValue(data);
-    }
-
-    @Override
-    public void onInit(int status) {
-        if (status != TextToSpeech.ERROR) {
-            tts.setLanguage(Locale.JAPANESE);
-        }
     }
 }
 

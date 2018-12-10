@@ -25,7 +25,7 @@ import java.util.Locale;
 public class WordListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     Toolbar toolbar;
 
-    private TextToSpeech tts;
+    static TextToSpeech tts;
 
     ArrayList<ListData> origin_list = new ArrayList<ListData>();
     ListData temp;
@@ -54,6 +54,15 @@ public class WordListActivity extends AppCompatActivity implements AdapterView.O
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(this);
+
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.JAPANESE);
+                }
+            }
+        });
     }
 
     public void onItemClick (AdapterView<?> parent, View v, int position, long id) {
