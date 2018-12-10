@@ -1,7 +1,6 @@
 package com.project.jpnstudy;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +12,27 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class FavoritesAdapter extends ArrayAdapter<ListData>{
-        private ArrayList<ListData> listCustom;
+public class FavoritesAdapter extends ArrayAdapter<FavoritesListData> {
 
+    private ArrayList<FavoritesListData> f_listCustom;
 
-    public FavoritesAdapter(@NonNull Context context, int resource, ArrayList<ListData> textViewResourceId) {
-        super(context, resource, textViewResourceId);
+    public FavoritesAdapter(Context context, int textViewResourceId, ArrayList<FavoritesListData> items) {
+        super(context, textViewResourceId, items);
+        this.f_listCustom = items;
     }
 
-    @Override
     public int getCount() {
-        return listCustom.size();
+        return f_listCustom.size();
     }
 
-    public int getPosition(ListData item) {
-        return listCustom.indexOf(item);
+    public FavoritesListData getItem(int position) {
+        return f_listCustom.get(position);
     }
+
+    public int getPosition(FavoritesListData item) {
+        return f_listCustom.indexOf(item);
+    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -39,19 +43,18 @@ public class FavoritesAdapter extends ArrayAdapter<ListData>{
             v = inflater.inflate(R.layout.activity_favorites, null);
         }
 
-        ListData p = listCustom.get(position);
+        FavoritesListData p = f_listCustom.get(position);
 
         if (p != null) {
-            TextView tw = (TextView) v.findViewById(R.id.f_word);
-            TextView tm = (TextView) v.findViewById(R.id.f_meaning);
+            final TextView tw = (TextView) v.findViewById(R.id.f_word);
+            final TextView tm = (TextView) v.findViewById(R.id.f_meaning);
 
-            tw.setText(p.gettWord());
-            tm.setText(p.gettMeaning());
+            tw.setText(p.getf_Word());
+            tm.setText(p.getf_Meaning());
 
-            ImageView ib_star = (ImageView) v.findViewById(R.id.btn_star);
-            ImageView ib_hs = (ImageView) v.findViewById(R.id.btn_headset);
+            final ImageView ib_star = (ImageView) v.findViewById(R.id.f_star);
+            final ImageView ib_hs = (ImageView) v.findViewById(R.id.f_headset);
         }
-
         return v;
     }
 
