@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">JpnStudy</string>
-    <string name="title_activity_youtube">유튜브링크로 이동</string>
+    <string name="app_name">일학도</string>
     <string name="word">단어</string>
     <string name="meaning">뜻</string>
     <string name="sentence">문장</string>
